@@ -6,7 +6,7 @@ use super::{
 };
 use modelfox_metrics::MeanSquaredError;
 use modelfox_progress_counter::ProgressCounter;
-use modelfox_table::prelude::*;
+use modelfox_table::prelude::*;	// This is their DataFrame implementation
 use modelfox_zip::{pzip, zip};
 use ndarray::{self, prelude::*};
 use num::ToPrimitive;

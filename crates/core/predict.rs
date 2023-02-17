@@ -655,6 +655,7 @@ fn deserialize_ngram(ngram: modelfox_model::NGramReader) -> modelfox_text::NGram
 	}
 }
 
+// take in a list of input values in order to produce a corresponding list of output (y) values 
 pub fn predict(
 	model: &Model,
 	input: &[PredictInput],
@@ -690,6 +691,7 @@ pub fn predict(
 		.collect();
 	let mut table = modelfox_table::Table::new(column_names, column_types);
 	// Fill the table with the input.
+	// For each input, convert the column into the right datatype
 	for input in input {
 		for column in table.columns_mut().iter_mut() {
 			match column {
@@ -754,6 +756,8 @@ fn predict_regressor(
 	match &model.model {
 		RegressionModel::Linear(inner_model) => {
 			let mut predictions = Array::zeros(n_rows);
+			// Obtain feature ndarray from MF table
+			// MF table here contains the input data formatted into cols
 			let features = modelfox_features::compute_features_array_f32(
 				&table.view(),
 				&model.feature_groups,

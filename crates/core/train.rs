@@ -1268,11 +1268,16 @@ fn train_linear_regressor(
 	handle_progress_event(TrainGridItemProgressEvent::ComputeFeatures(
 		progress_counter.clone(),
 	));
+	
+	// to_ndarray equivalent, with additional transformation based on each feature group
+	// This is our X matrix
 	let features =
 		modelfox_features::compute_features_array_f32(table_train, &feature_groups, &|| {
 			progress_counter.inc(1)
 		});
 	handle_progress_event(TrainGridItemProgressEvent::ComputeFeaturesDone);
+	// This is the training labels Y vector
+	// Supervised learning: We use these to train the regressor 
 	let labels = table_train
 		.columns()
 		.get(target_column_index)
