@@ -1016,7 +1016,7 @@ pub struct TrainGridItemOutput {
 }
 
 #[allow(clippy::too_many_arguments)]
-fn train_grid_item(
+pub fn train_grid_item(
 	grid_item_count: usize,
 	grid_item_index: usize,
 	grid_item: grid::GridItem,
@@ -1171,7 +1171,7 @@ pub struct TreeMulticlassClassifierTrainModelOutput {
 	pub feature_importances: Vec<f32>,
 }
 
-fn train_model(
+pub fn train_model(
 	grid_item: grid::GridItem,
 	table_train: &TableView,
 	kill_chip: &KillChip,
@@ -1253,7 +1253,7 @@ fn train_model(
 	}
 }
 
-fn train_linear_regressor(
+pub fn train_linear_regressor(
 	table_train: &TableView,
 	target_column_index: usize,
 	feature_groups: Vec<modelfox_features::FeatureGroup>,
@@ -1306,7 +1306,7 @@ fn train_linear_regressor(
 	})
 }
 
-fn train_tree_regressor(
+pub fn train_tree_regressor(
 	table_train: &TableView,
 	target_column_index: usize,
 	feature_groups: Vec<modelfox_features::FeatureGroup>,
